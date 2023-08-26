@@ -15,11 +15,11 @@ Run the program with the command "java Greeting.java".
 
 What is your name?
 
-Nhi
+Nhi Pham
 
 What salutation would you like me to use?
 
-Hello
+Hello there
 
 
-Hello Nhi, it is nice to meet you! Goodbye!
+Hello there Nhi Pham, it is nice to meet you! Goodbye!
