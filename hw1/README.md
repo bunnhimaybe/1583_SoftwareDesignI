@@ -3,7 +3,7 @@
 ## Description
 
 This is a modified "HelloWorld" program that asks the user how they want to be called and greeted.
-It will return "[salutation] [name], it is nice to meet you! Goodbye!".
+It will return "Hello [salutation] [name], it is nice to meet you! Goodbye!".
 
 ## Execution
 
@@ -14,12 +14,8 @@ Run the program with the command "java Greeting.java".
 ## Example Output
 
 What is your name?
-
 Nhi Pham
-
 What salutation would you like me to use?
+Ms.
 
-Hello there
-
-
-Hello there Nhi Pham, it is nice to meet you! Goodbye!
+Hello Ms. Nhi Pham, it is nice to meet you! Goodbye!
