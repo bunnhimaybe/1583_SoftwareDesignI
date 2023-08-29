@@ -12,7 +12,7 @@ public class Greeting{ // class declaration
 		String name = input.nextLine(); // saves input data into name var
 		System.out.println("What salutation would you like me to use?"); // prompt
 		String salutation = input.nextLine(); // saves input into salutation
-		System.out.printf("\n%s%s%s%s\n", salutation, " ", name, ", it is nice to meet you! Goodbye!"); // greets user
+		System.out.printf("\n%s%s%s%s%s\n", "Hello ", salutation, " ", name, ", it is nice to meet you! Goodbye!"); // greets user
 		input.close(); // frees memory
 	} // end method main
 } // end class Greeting
