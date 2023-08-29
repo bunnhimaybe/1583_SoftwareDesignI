@@ -13,9 +13,8 @@ Run the program with the command "java Greeting.java".
 
 ## Example Output
 
-What is your name?
-Nhi Pham
-What salutation would you like me to use?
-Ms.
+What is your name?  
+Nhi Pham  
+What salutation would you like me to use?  
 
 Hello Ms. Nhi Pham, it is nice to meet you! Goodbye!
