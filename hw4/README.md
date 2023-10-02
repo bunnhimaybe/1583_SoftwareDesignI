@@ -12,16 +12,17 @@ Run the program with the command <java SumOfDigits>.
 
 ## Sample
 
-57 &nbsp// input  
-7 &nbsp// output  
+57 // input  
+7 // output  
 
 
-538 &nbsp// input  
-7 &nbsp// output  
+538 // input  
+7 // output  
 
 
-7 &nbsp// input  
-7 &nbsp// output  
+7 // input  
+7 // output  
 
-12345 &nbsp// input  
-6 &nbsp// output  
+
+12345 // input  
+6 // output  
