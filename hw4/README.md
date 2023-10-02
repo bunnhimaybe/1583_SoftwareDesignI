@@ -6,9 +6,9 @@ This program calculates the sum of all individual digits in a positive integer g
 
 ## Execution
 
-To run this program, navigate to the directory with <cd "PATH"/lapham_1583/hw2/src>.
-Compile the program with the command <javac SumOfDigits.java>.
-Run the program with the command <java SumOfDigits>.
+To run this program, navigate to the directory with "cd <PATH>/lapham_1583/hw2/src".  
+Compile the program with the command "javac SumOfDigits.java".  
+Run the program with the command "java SumOfDigits".  
 
 ## Sample
 
