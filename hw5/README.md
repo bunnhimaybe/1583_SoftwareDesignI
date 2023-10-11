@@ -6,37 +6,37 @@ This program will pick a random integer exclusively between two integers given b
 
 ## 	Greeting  
 
-> 	Hello! We're going to play a game. 
+> 	Hello! We're going to play a game.
 
 ## 	Results
 
 If the user guesses a number that is too low:  
-> 	Go higher!
+> 	Go higher!  
 
-If the user guesses a number that is too high:  
-> 	Go lower!
+If the user guesses a number that is too high:
+> 	Go lower!  
 
 ## 	Errors  
 
-There are no valid integers between the given boundaries. 
-> 	ERROR!: RANGE
-> 	There are no valid integers between the given range. Try again!
+The range is not within the valid range. 
+> 	ERROR: OUT OF BOUNDS  
+> 	I can only use numbers between -32768 and 32767. Try again!  
+
+There are no valid integers between the given minimum and maximum. 
+> 	ERROR!: INVALID RANGE  
+> 	There are no valid integers between the given range. Try again!  
 
 The number of guesses is invalid.  
-> 	ERROR!: GUESSES
-> 	You should enter a positive number. Try again!
-
-The same number is guessed more than once.  
-> 	ERROR!: DUPLICATE GUESS  
-> 	You've already guessed that number. Try again!  
+> 	ERROR!: GUESSES  
+> 	You should enter a positive number. Try again!  
 
 The guess is an invalid number.  
 > 	ERROR: INVALID GUESS
 > 	That number is not in the range you gave me. Try again!
 
-The range is not within the valid range. 
-> 	ERROR: OUT OF BOUNDS
-> 	That number is not within the valid bounds. 
+The same number is guessed more than once.  
+> 	ERROR!: DUPLICATE GUESS  
+> 	You've already guessed that number. Try again!  
 
 ## 	Grading
 
@@ -57,18 +57,22 @@ Run the program with the command "java RandomGuesser".
 
 ## 	Sample
 
-> 	Hello! 
-> 	Give me a number: 1
-> 	Give me another number!: 10
+> 	Hello! We're going to play a game.  
+> 	Give me two numbers and I'll chose a random number in between them (uninclusive).  
+> 	Then try to guess what it is!  
 > 	
-> 	Great! I'm thinking of a number between 100 and 10. 
-> 	How many times do you want to guess what it is?: 5
+> 	Give me a number: 1  
+> 	Give me another number!: 10  
 > 	
-> 	Okay! 
-> 	What number is it?: 5
+> 	Great! I chose a number between 1 and 10.  
+> 	How many times do you want to try to guess the number?: 5  
 > 	
-> 	That's not it. Go higher!
-> 	What number is it?: 5
+> 	Good luck!  
+> 	
+> 	Guess a number: 5  
+> 	
+> 	That's not it. Go higher!  
+> 	Guess a number: 5  
 > 	
 > 	That's correct! 
-> 	You did EXCELLENT!
+> 	You did EXCELLENT!  
