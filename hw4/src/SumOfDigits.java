@@ -1,11 +1,11 @@
 /*  Sum of Digits
     
-    Calculates the sum of individual digits in a given positive integer. 
-    Continues to calculate the sum to get a single digit. 
-
     Homework 4
     Nhi Pham
     due 10/3 Tue
+
+    Calculates the sum of individual digits in a given positive integer. 
+    Continues to calculate the sum to get a single digit. 
 */
 
 import java.util.Scanner;
@@ -25,6 +25,7 @@ public class SumOfDigits{
                 sum = 0;                                // reset sum
             }
         }
+        
         System.out.println(sum);                // output final single-digit sum
         input.close();                          // that's it
     }
