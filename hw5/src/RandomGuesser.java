@@ -1,138 +1,115 @@
 /*  Random Guesser
-    
     Homework 5
     Nhi Pham
     due 10/11 Wed
-
 */
 
 import java.util.Scanner;
 import java.util.Random;
 
 public class RandomGuesser{
-	private static int MAX_BOUND, MIN_BOUND, MAX_GUESSES, SECRET, RANGE, temp = 0; // constants
-	private static int[] gameRecord; // keep track of guesses
-	private enum Grade {PASS, EXCELLENT, GOOD, FAILED, LUCKY}; // guess grading
+	// variables
+	private static int MAX_BOUND, MIN_BOUND, MAX_GUESSES, SECRET, RANGE, TEMP; 
+	private static int[] history; // keep track of guesses
+	private enum Grade {PASS, EXCELLENT, GOOD, FAILED, LUCKY}; 
 	public static Scanner input = new Scanner(System.in);
 
-	public RandomGuesser(){ // constructor
-		gameRecord = new int[MAX_GUESSES];
+	// validate range
+	public static void rangeCheck(){
+		if (RANGE < 2){
+			System.out.println("ERROR: INVALID RANGE");
+			System.out.println("There must be at least two possible integers in the range (noninclusive). Try again!");
+		} else if (RANGE == 2){ 
+			System.out.println("ERROR: CHEATING RANGE");
+			System.out.println("There is only one possible number in that range. Try again.\n");
+		}
 	}
 
-	public static void setup(){ // set constants
-		System.out.println("Hello! We're going to play a game.");
-		System.out.println("Try to guess a number between two numbers.");
+	public RandomGuesser(){
+	}
 
-		do { // set range
-			System.out.print("\nGive me a number: ");
+	// define variables
+	public static void setup(){
+
+		// game values setup
+		do { // range
+			System.out.print("Give me a number: ");
 			MIN_BOUND = input.nextInt();
-			System.out.print("\nGive me another number: ");
+			System.out.print("Give me another number: ");
 			MAX_BOUND = input.nextInt();
-
-			if (MAX_BOUND < MIN_BOUND) { // switch MIN/MAX if second number is smaller
-				temp = MAX_BOUND;
+			
+			// switch MIN/MAX if second number is smaller
+			if (MAX_BOUND < MIN_BOUND) {
+				TEMP = MAX_BOUND;
 				MAX_BOUND = MIN_BOUND;
-				MIN_BOUND = temp;
+				MIN_BOUND = TEMP;
 			}
 
-			RANGE = MAX_BOUND - MIN_BOUND; // validate range
-			if (RANGE < 2){
-				System.out.println("ERROR: INVALID RANGE");
-				System.out.println("There must be at least two possible integers in your range (noninclusive). Try again!");
-			} else if (RANGE == 2){ 
-				System.out.println("ERROR: CHEATER");
-				System.out.println("There is only one possible number in that range.");
-				System.out.println("This isn't fun if you don't have to guess. Try again!");
-			} else {
-				Random rand = new Random();
-				SECRET = MIN_BOUND + rand.nextInt(RANGE - 1) + 1; // random number between MIN_BOUND and MAX_BOUND
-				System.out.printf("\nGreat! I chose a number between %d and %d.", MIN_BOUND, MAX_BOUND); // valid range
-			}
+			RANGE = MAX_BOUND - MIN_BOUND; 
+			rangeCheck();
 		} while (RANGE <= 2); 
 
-		do { // set # of guesses
-			System.out.print("\nHow many times would you like to guess?: ");
+		// generate random number in valid range
+		SECRET = (int) (Math.random() * RANGE) + MIN_BOUND;
+
+		// set # of tries
+		do { 
+			System.out.print("How many tries do you want?: ");
 			MAX_GUESSES = input.nextInt();
 
 			if (MAX_GUESSES <= 0){
-				System.out.println("ERROR: YOU HAVE TO GUESS AT LEAST ONCE");
-				System.out.println("You should enter a positive number. Try again!");
+				System.out.println("ERROR: GUESSES");
+				System.out.println("You must guess at least once. Try again!\n");
 			}
 		} while (MAX_GUESSES <= 0);
-		
-		System.out.println("\nGOOD LUCK !\n");
-		System.out.println("-----\n"); // finished game setup
+		return;
 	}
 
-	/*
-	public static int guess(){
-		int n;
-		for (n = 0; n < MAX_GUESSES; n++){
+	// player guesses what SECRET is
+	public static int play(){
+		history = new int[MAX_GUESSES];
+		int turn;
+		for (turn = 0; turn < MAX_GUESSES; turn++){
 			System.out.print("Guess a number: ");
-			gameRecord[n] = input.nextInt();
+			history[turn] = input.nextInt();
 
-			if (gameRecord[n] == SECRET){
-				return n;
-			}
-
-			for (int j = 0; j < n; j++){
-				if (gameRecord[j] == gameRecord[n]){
-					if (RandomGuesser.warned() == true){
-						System.out.println("You lose because you're silly.");
-						return n;
+			// check if number was already guessed
+			for (int j = 0; j < turn; j++){ 
+				if (history[j] == history[turn]){
+					// lose if guess is duplicated more than once
+					if (TEMP == 1){
+						turn = MAX_GUESSES;
+						System.out.println("You suck!");
 					} else {
-						gameRecord[n] = input.nextInt(); // enter another number
+						System.out.println("You've already guessed that number. Try again!");
+						TEMP = 1; turn--; // repeat turn if guess already made 
 					}
 				}
 			}
+
+			if (history[turn] == SECRET){
+				System.out.println("Nice, That's correct!");
+			}
+			TEMP = 0;
 		}
-		return n;
-	}
-	*/
-
-	public static boolean warned(){
-		if (temp != -1){
-			System.out.println("ERROR: DUPLICATE GUESS");
-			System.out.println("You've already guessed that number. This is your only warning!");
-			System.out.print("Try again.");
-
-			temp = -1;
-			return false;
-		} else return true;
+		return turn;
 	}
 
+	// grade player and reveal SECRET
+	public static void results(int score){
+		System.out.printf("The number was %d.\n", SECRET);
+	} 
+
+	// main
 	public static void main(String[] args){
-		RandomGuesser.setup();
+		System.out.println("Welcome to Random Guesser!");
+		System.out.println("Try to guess a number exclusively between two numbers.\n");
+		setup(); 
 		RandomGuesser game = new RandomGuesser();
-		// RandomGuesser.guess();
-
-		int n;
-
-		for (n = 0; n < MAX_GUESSES; n++){
-			System.out.print("Guess a number: ");
-			gameRecord[n] = input.nextInt();
-
-			for (int j = 0; j < n; j++){ // check if warned about duplicate guess
-				if (gameRecord[j] == gameRecord[n]){
-					if (RandomGuesser.warned() == true){
-						System.out.println("You lose because you're silly.");
-					} else {
-						n--; // repeat loop
-					}
-				}
-			}
-
-			if (gameRecord[n] == SECRET){
-				System.out.println("Nice! That's correct.");
-			}
-		}
-
-		if (n == MAX_GUESSES){
-			System.out.printf("Sorry, the number was %d. You suck.\n", SECRET);
-		}
+		results(play());
+		System.out.println("Thanks for playing!");
 		
 		input.close();
 		return;
 	}
-
 }
