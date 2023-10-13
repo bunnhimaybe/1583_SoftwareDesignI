@@ -25,9 +25,6 @@ public class RandomGuesser{
 		}
 	}
 
-	public RandomGuesser(){
-	}
-
 	// define variables
 	public static void setup(){
 
@@ -79,16 +76,17 @@ public class RandomGuesser{
 					// lose if guess is duplicated more than once
 					if (TEMP == 1){
 						turn = MAX_GUESSES;
-						System.out.println("You suck!");
+						System.out.println("You suck!\n");
 					} else {
-						System.out.println("You've already guessed that number. Try again!");
+						System.out.println("ERROR: DUPLICATE GUESS");
+						System.out.println("You've already guessed that number. Try again!\n");
 						TEMP = 1; turn--; // repeat turn if guess already made 
 					}
 				}
 			}
 
 			if (history[turn] == SECRET){
-				System.out.println("Nice, That's correct!");
+				System.out.println("Nice, That's correct!\n");
 			}
 			TEMP = 0;
 		}
@@ -96,18 +94,45 @@ public class RandomGuesser{
 	}
 
 	// grade player and reveal SECRET
-	public static void results(int score){
-		System.out.printf("The number was %d.\n", SECRET);
+	public static void results(int n){
+		System.out.printf("The number was %d.\n\n", SECRET);
+		Grade score;
+		if (n == MAX_GUESSES){
+			score = Grade.FAILED;
+		} else if (n == 1){
+			score = Grade.LUCKY;
+		} else if (n <= Math.log(MAX_BOUND - MIN_BOUND) / Math.log(2)) { // log base 2
+			score = Grade.EXCELLENT;
+		} else {
+			score = Grade.GOOD;
+		}
+
+		switch (score){
+			case FAILED:
+				System.out.println("You FAILED and you're awful.");
+				break;
+			case LUCKY:
+				System.out.println("You were LUCKY!");
+				break;
+			case EXCELLENT:
+				System.out.println("You did EXCELLENT!");
+				break;
+			case GOOD:
+				System.out.println("You did GOOD!");
+				break;
+		}
+
+		// goodbye
+		System.out.println("Thanks for playing!");
 	} 
 
 	// main
 	public static void main(String[] args){
 		System.out.println("Welcome to Random Guesser!");
 		System.out.println("Try to guess a number exclusively between two numbers.\n");
+		
 		setup(); 
-		RandomGuesser game = new RandomGuesser();
 		results(play());
-		System.out.println("Thanks for playing!");
 		
 		input.close();
 		return;
