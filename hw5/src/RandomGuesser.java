@@ -17,11 +17,12 @@ public class RandomGuesser{
 	// validate range
 	public static void rangeCheck(){
 		if (RANGE < 2){
-			System.out.println("ERROR: INVALID RANGE");
+			System.out.println("ERROR!: INVALID RANGE");
 			System.out.println("There must be at least two possible integers in the range (noninclusive). Try again!");
 		} else if (RANGE == 2){ 
-			System.out.println("ERROR: CHEATING RANGE");
-			System.out.println("There is only one possible number in that range. Try again.\n");
+			System.out.println("ERROR!: CHEATING RANGE");
+			System.out.println("There is only one possible number in that range.");
+			System.out.println("This isn't fun if you don't have to guess. Try again!");
 		}
 	}
 
@@ -55,7 +56,7 @@ public class RandomGuesser{
 			MAX_GUESSES = input.nextInt();
 
 			if (MAX_GUESSES <= 0){
-				System.out.println("ERROR: GUESSES");
+				System.out.println("ERROR!: GUESSES");
 				System.out.println("You must guess at least once. Try again!\n");
 			}
 		} while (MAX_GUESSES <= 0);
@@ -67,7 +68,7 @@ public class RandomGuesser{
 		history = new int[MAX_GUESSES];
 		int turn;
 		for (turn = 0; turn < MAX_GUESSES; turn++){
-			System.out.print("Guess a number: ");
+			System.out.print("\nGuess a number: ");
 			history[turn] = input.nextInt();
 
 			// check if number was already guessed
@@ -78,7 +79,7 @@ public class RandomGuesser{
 						turn = MAX_GUESSES;
 						System.out.println("You suck!\n");
 					} else {
-						System.out.println("ERROR: DUPLICATE GUESS");
+						System.out.println("ERROR!: DUPLICATE GUESS");
 						System.out.println("You've already guessed that number. Try again!\n");
 						TEMP = 1; turn--; // repeat turn if guess already made 
 					}
@@ -86,7 +87,12 @@ public class RandomGuesser{
 			}
 
 			if (history[turn] == SECRET){
-				System.out.println("Nice, That's correct!\n");
+				System.out.println("Nice, that's correct!\n");
+				turn = MAX_GUESSES;
+			} else if (history[turn] > SECRET){
+				System.out.println("Go lower!");
+			} else {
+				System.out.println("Go higher!");
 			}
 			TEMP = 0;
 		}
