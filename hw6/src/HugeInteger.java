@@ -33,6 +33,11 @@ public class HugeInteger{
 		}
 	}
 
+	// isNegative getter
+	public boolean isNegative(){
+		return this.isNegative;
+	}
+
 	// testing: display HugeInteger
 	public void print(){
 		int index = SIZE - 1;
@@ -48,14 +53,37 @@ public class HugeInteger{
 		for (int i = index; i >= 0; i--){
 			System.out.print(data[i]);
 		}
+
+		System.out.println();
+	}
+
+	// converts String signed integer to a new HugeInteger object
+	public static HugeInteger parse(String input){
+		HugeInteger newHuge = new HugeInteger(input);
+		return newHuge;
+	}
+	
+	public String toString(){
+		String hugeString = "";
+		int index = SIZE - 1;
+
+		// check if negative
+		if (isNegative){
+			hugeString.concat("-");
+		}
+		// do not include leading zeros
+		while (data[index] == 0 && index != 0){
+			index--;
+		}
+		// values concatonated to hugeString
+		for (int i = index; i >= 0; i--){
+			hugeString += data[i];
+		}
+		return hugeString;
 	}
 }
 /*
-	public static HugeInteger parse(String input){
-		return new HugeInteger(input);
-	}
 
-	public String toString(){
 		for (int i = 0; i < 60; i++){
 			System.out.println();
 		}

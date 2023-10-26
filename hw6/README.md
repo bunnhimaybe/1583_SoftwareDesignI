@@ -13,9 +13,13 @@ Run the tester program with "java HugeIntegerTest.java".
 
 ## Functions
 
-This class is able to perform the following functions:  
+This HugeInteger class is able to perform the following functions:  
 
-- convert a String containing a signed integer to a HugeInteger. 
+- print its value 
+- print whether it is negative or not
+- convert a signed integer String to a HugeInteger
+- parse a String as a new HugeInteger
+- return a HugeInteger as a String
 
 ## Sample
 
